@@ -1,0 +1,464 @@
+```html id="jlwm26"
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WattCare - Login</title>
+
+    <script type="module" src="http://[::1]:5173/@vite/client"></script><link rel="stylesheet" href="http://[::1]:5173/resources/css/app.css" /><script type="module" src="http://[::1]:5173/resources/js/app.js"></script>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family: 'Space Grotesk', sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a 0%,
+                    #1e3a8a 45%,
+                    #dbeafe 100%
+                );
+
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+        }
+
+        /* =========================
+           BACKGROUND GLOW
+        ========================= */
+
+        .bg-glow {
+            position: absolute;
+            border-radius: 999px;
+            filter: blur(100px);
+            opacity: 0.25;
+            z-index: 0;
+        }
+
+        .bg-glow.one {
+            width: 400px;
+            height: 400px;
+
+            background: #60a5fa;
+
+            top: -120px;
+            left: -120px;
+        }
+
+        .bg-glow.two {
+            width: 350px;
+            height: 350px;
+
+            background: white;
+
+            bottom: -120px;
+            right: -120px;
+        }
+
+        /* =========================
+           AUTH CONTAINER
+        ========================= */
+
+        .auth-wrapper {
+
+            position: relative;
+            z-index: 10;
+
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 24px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .auth-card {
+
+            width: 100%;
+            max-width: 460px;
+
+            background: rgba(255,255,255,0.1);
+
+            backdrop-filter: blur(20px);
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            border-radius: 30px;
+
+            padding: 42px;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.25);
+
+            animation: fadeUp 0.5s ease;
+        }
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .logo-wrapper {
+
+            display: flex;
+            justify-content: center;
+
+            margin-bottom: 24px;
+        }
+
+        .logo-icon {
+
+            width: 72px;
+            height: 72px;
+
+            border-radius: 22px;
+
+            background: rgba(255,255,255,0.12);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 34px;
+
+            color: white;
+        }
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        .auth-title {
+
+            text-align: center;
+
+            margin-bottom: 8px;
+
+            font-size: 34px;
+            font-weight: 700;
+
+            color: white;
+        }
+
+        .auth-subtitle {
+
+            text-align: center;
+
+            color: rgba(255,255,255,0.72);
+
+            line-height: 1.7;
+
+            margin-bottom: 32px;
+
+            font-size: 15px;
+        }
+
+        /* =========================
+           ALERT
+        ========================= */
+
+        .alert {
+
+            background: rgba(220,38,38,0.12);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            color: white;
+
+            padding: 16px 18px;
+
+            border-radius: 16px;
+
+            margin-bottom: 24px;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 10px;
+
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+
+            color: rgba(255,255,255,0.82);
+
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+
+            width: 100%;
+
+            padding: 15px 18px;
+
+            border-radius: 14px;
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            background: rgba(255,255,255,0.08);
+
+            backdrop-filter: blur(10px);
+
+            color: white;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: all 0.25s ease;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255,255,255,0.45);
+        }
+
+        .form-group input:focus {
+
+            border-color: rgba(255,255,255,0.4);
+
+            background: rgba(255,255,255,0.12);
+
+            box-shadow:
+                0 0 0 4px rgba(255,255,255,0.08);
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .btn-login {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+            border-radius: 16px;
+
+            background: white;
+
+            color: #0f172a;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+
+            margin-top: 8px;
+        }
+
+        .btn-login:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 28px rgba(255,255,255,0.18);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .auth-footer {
+
+            text-align: center;
+
+            margin-top: 26px;
+
+            color: rgba(255,255,255,0.72);
+
+            font-size: 14px;
+        }
+
+        .auth-footer a {
+
+            color: white;
+
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 640px) {
+
+            body {
+                overflow-y: auto;
+            }
+
+            .auth-card {
+
+                padding: 32px 24px;
+
+                border-radius: 24px;
+            }
+
+            .auth-title {
+                font-size: 28px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Glow -->
+
+    <div class="bg-glow one"></div>
+    <div class="bg-glow two"></div>
+
+    <!-- AUTH -->
+
+    <div class="auth-wrapper">
+
+        <div class="auth-card">
+
+            <!-- Logo -->
+
+            <div class="logo-wrapper">
+
+                <div class="logo-icon">
+                    ⚡
+                </div>
+
+            </div>
+
+            <!-- Title -->
+
+            <h1 class="auth-title">
+                Masuk ke WattCare
+            </h1>
+
+            <p class="auth-subtitle">
+                Pantau konsumsi listrik rumah Anda
+                dengan sistem monitoring modern dan AI.
+            </p>
+
+            <!-- Error -->
+
+            
+            <!-- Form -->
+
+            <form method="POST"
+                  action="http://127.0.0.1:8000/login">
+
+                <input type="hidden" name="_token" value="681ktx2L1L656Y58XnOxyqsIpDNr7F3RWWNTNtiU" autocomplete="off">
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value=""
+                        placeholder="Masukkan email Anda"
+                        required
+                        autocomplete="email"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Masukkan password"
+                        required
+                        autocomplete="current-password"
+                    >
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn-login">
+
+                    🔐 Login Sekarang
+
+                </button>
+
+            </form>
+
+            <!-- Footer -->
+
+            <div class="auth-footer">
+
+                Belum punya akun?
+
+                <a href="http://127.0.0.1:8000/register">
+
+                    Daftar sekarang
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+```
